@@ -87,7 +87,7 @@ sniffer:
 proxy-providers:
   myproxy:
     type: http
-    url: https://subone.x-x.sbs/ssone/51c870fe3b9ea97430de23bd5d02568f
+    url: 
     interval: 172800
     path: ./myproxy.yaml
     health-check:
