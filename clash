@@ -67,33 +67,27 @@ external-controller-cors:
   allow-origins:
   - '*'
 
-sniffer:
-  enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  override-destination: false
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  # force-domain:
-  skip-domain:
-    - Mijia Cloud
+# Clash 配置格式
+
+proxy-groups:
+  - name: UseProvider
+    type: select
+    use:
+      - subone.x-x.sbs
+    proxies:
+      - Proxy
+      - DIRECT
 
 proxy-providers:
-  myproxy:
+  subone.x-x.sbs:
     type: http
-    url: 
-    interval: 172800
-    path: ./myproxy.yaml
+    url: https://proxy-provider-converter.vercel.app/api/convert?url=https%3A%2F%2Fsubone.x-x.sbs%2Fssone%2F51c870fe3b9ea97430de23bd5d02568f&target=clash
+    interval: 3600
+    path: ./subone.x-x.sbs.yaml
     health-check:
       enable: true
       interval: 600
-      lazy: true
+      # lazy: true
       url: http://www.gstatic.com/generate_204
 
 proxy-groups:
